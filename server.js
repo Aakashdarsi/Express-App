@@ -6,11 +6,15 @@ app.use(express.urlencoded({extended:true}))
 app.use('/xyz',express.static(__dirname + '/public'));
 
 app.get("/hello",(req,res)=>{
-    res.send("Hello World");
+    let user = "Guest"
+    if(req.query.user){
+        user = req.query.user;
+    }
+    res.send("Hello World "+user);
 })
 
 
 app.listen(3451,(req,res)=>{
-    console.log("http://localhost:3451");
+    console.log("http://localhost:3451/xyz");
 })
 
